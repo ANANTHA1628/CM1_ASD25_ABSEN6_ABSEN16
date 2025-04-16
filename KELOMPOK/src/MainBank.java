@@ -6,7 +6,6 @@ public class MainBank {
         ServiceTransaksi service = new ServiceTransaksi();
         int pilih;
 
-        // Menu utama program
         do {
             System.out.println("\nBANK MENU:");
             System.out.println("1. Tampilkan Data Rekening");
@@ -17,15 +16,15 @@ public class MainBank {
             System.out.println("6. Keluar");
             System.out.print("Pilih menu: ");
             pilih = sc.nextInt();
-            sc.nextLine();  // Membersihkan input buffer
+            sc.nextLine();  
 
             switch (pilih) {
                 case 1:
-                    // Tampilkan data rekening
+                   
                     service.displayData();
                     break;
                 case 2:
-                    // Tambah transaksi baru
+                    
                     System.out.print("No Rekening: ");
                     String norek = sc.nextLine();
                     System.out.print("Nama: ");
@@ -36,7 +35,7 @@ public class MainBank {
                     String nohp = sc.nextLine();
                     System.out.print("Email: ");
                     String email = sc.nextLine();
-                    Bank newBank = new Bank(norek, nama, ibu, nohp, email);
+                    NoRekening newBank = new NoRekening(norek, nama, ibu, nohp, email);
 
                     System.out.print("Kode Transaksi: ");
                     String kode = sc.nextLine();
@@ -46,7 +45,7 @@ public class MainBank {
                     double masuk = sc.nextDouble();
                     System.out.print("Saldo Keluar: ");
                     double keluar = sc.nextDouble();
-                    sc.nextLine();  // Membersihkan input buffer
+                    sc.nextLine();  
                     System.out.print("Tanggal Transaksi: ");
                     String tanggal = sc.nextLine();
                     System.out.print("Type Transaksi (Deposit/Withdraw): ");
@@ -56,26 +55,26 @@ public class MainBank {
                     service.tambah(newTrans);
                     break;
                 case 3:
-                    // Cari data berdasarkan email
+                    
                     System.out.print("Masukkan Email yang dicari: ");
                     String cariEmail = sc.nextLine();
                     service.Searching(cariEmail);
                     break;
                 case 4:
-                    // Tampilkan saldo minimum dan maksimum
+                    
                     service.FindMinMax();
                     break;
                 case 5:
-                    // Urutkan data berdasarkan nama
+                    
                     service.Sorting();
                     break;
                 case 6:
-                    // Keluar dari program
+                   
                     System.out.println("Terima kasih telah menggunakan sistem.");
                     break;
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
-        } while (pilih != 6);  // Loop akan berhenti jika memilih menu 6
+        } while (pilih != 6);  
     }
 }
