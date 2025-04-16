@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class MainBank {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        servisTransaksi servis = new servisTransaksi(10);
+        ServiceTransaksi servis = new ServiceTransaksi(10);
 
         NoRekening b1 = new NoRekening("123", "Rina", "Siti", "0811", "rina@gmail.com");
         NoRekening b2 = new NoRekening("456", "Andi", "Ayu", "0822", "andi@yahoo.com");
@@ -50,4 +50,5 @@ public class MainBank {
         } while (pilihan != 5);
 
         sc.close();
-    }
+    }
+}
