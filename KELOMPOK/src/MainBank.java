@@ -52,7 +52,7 @@ public class MainBank {
                     service.SortFinalSaldoAsc();
                     break;
                 case 6:
-                    System.out.println("Terima kasih!");
+                    System.out.println("Terima kasih telah menggunakan Bank Polinema!! ");
                     break;
                 default:
                     System.out.println("\nMENU TIDAK ADA !");
