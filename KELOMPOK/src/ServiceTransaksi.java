@@ -27,14 +27,14 @@ public class ServiceTransaksi {
         boolean ditemukan = false;
         for (int i = 0; i < idx; i++) {
             if (Trs[i].bankAcc.email.equalsIgnoreCase(email)) {
-                System.out.println("Data ada!!:");
+                System.out.println("Data Ketemu!!:");
                 Trs[i].bankAcc.tampilDataNorek();
                 Trs[i].tampilDataTransaksi();
                 ditemukan = true;
             }
         }
         if (!ditemukan) {
-            System.out.println("Data tidak ditemukan.");
+            System.out.println("Maaf data yang anda cari tidak ditemukan.");
         }
     }
 
@@ -51,7 +51,7 @@ public class ServiceTransaksi {
                 maxTrx = Trs[i];
             }
         }
-        System.out.println("Transaksi dengan Debit/Kredit Tertinggi:");
+        System.out.println("Transaksi Debit/Kredit yang Tertinggi:");
         maxTrx.tampilDataTransaksi();
     }
 
@@ -65,7 +65,7 @@ public class ServiceTransaksi {
                 }
             }
         }
-        System.out.println("Data diurutkan berdasarkan Final Saldo (ASC):");
+        System.out.println("Mengurutkan Data berdasarkan Final Saldo (ASC):");
         displayData();
     }
 }

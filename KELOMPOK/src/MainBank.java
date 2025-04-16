@@ -41,7 +41,7 @@ public class MainBank {
                     service.displayData();
                     break;
                 case 3:
-                    System.out.print("Masukkan Email: ");
+                    System.out.print("Masukkan Email yang akan di cari : ");
                     String email = sc.nextLine();
                     service.Searching(email);
                     break;
@@ -55,7 +55,7 @@ public class MainBank {
                     System.out.println("Terima kasih!");
                     break;
                 default:
-                    System.out.println("Menu tidak valid!");
+                    System.out.println("\nMENU TIDAK ADA !");
             }
 
         } while (pilih != 6);
