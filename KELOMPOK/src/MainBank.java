@@ -5,7 +5,6 @@ public class MainBank {
         Scanner sc = new Scanner(System.in);
         ServiceTransaksi service = new ServiceTransaksi(10);
 
-        // INPUT DATA TRANSAKSI
         service.tambah(new Transaksi("Tr001", 500000, 100000, 400000, "23-04-2024", "Debit",
             new NoRekening("16092027 3084", "Wallace", "Mel Mel", "082-458-264-3263", "wallace@qwuil.com")));
         service.tambah(new Transaksi("Tr002", 500000, 100000, 600000, "23-04-2024", "Kredit",
@@ -19,16 +18,17 @@ public class MainBank {
 
         int pilih;
         do {
-            System.out.println("\nBANK MENU:");
-            System.out.println("1. Tampilkan Semua Data");
+            System.out.println("\n==================POLINEMA BANK==================");
+            System.out.println("BANK MENU:");
+            System.out.println("1. Data Norek");
             System.out.println("2. Data Transaksi");
-            System.out.println("3. Search by Email");
-            System.out.println("4. Max Debit/Kredit");
-            System.out.println("5. Sort Final Saldo ASC");
-            System.out.println("6. Keluar");
-            System.out.print("Pilih menu: ");
+            System.out.println("3. Search Data berdasarkan Email");
+            System.out.println("4. Display max debit/kredit");
+            System.out.println("5. Sort Data");
+            System.out.println("6. Exit");
+            System.out.print("Choose menu(1-6): ");
             pilih = sc.nextInt();
-            sc.nextLine();  // buang newline
+            sc.nextLine(); 
 
             switch (pilih) {
                 case 1:

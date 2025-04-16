@@ -11,7 +11,7 @@ public class ServiceTransaksi {
         if (idx < Trs.length) {
             Trs[idx++] = t;
         } else {
-            System.out.println("Data sudah penuh!");
+            System.out.println("Data penuh!");
         }
     }
 
@@ -27,7 +27,7 @@ public class ServiceTransaksi {
         boolean ditemukan = false;
         for (int i = 0; i < idx; i++) {
             if (Trs[i].bankAcc.email.equalsIgnoreCase(email)) {
-                System.out.println("Data ditemukan:");
+                System.out.println("Data ada!!:");
                 Trs[i].bankAcc.tampilDataNorek();
                 Trs[i].tampilDataTransaksi();
                 ditemukan = true;
@@ -40,7 +40,7 @@ public class ServiceTransaksi {
 
     void FindMaxDebitKredit() {
         if (idx == 0) {
-            System.out.println("Data kosong!");
+            System.out.println("Data TIDAK ADA!");
             return;
         }
         double max = Trs[0].inOutSaldo;
