@@ -27,8 +27,9 @@ public class MainBank {
                 System.out.printf("%-15s %-10s %-15s %-18s %-25s\n", "16204041 2243", "Fuller", "Rosalia", "085-556-712-7602", "fuller@gmail.com");
                 System.out.printf("%-15s %-10s %-15s %-18s %-25s\n", "16276325 0112", "Maria", "Kristela", "082-767-223-4234", "maria@gmail.com");
                 System.out.printf("%-15s %-10s %-15s %-18s %-25s\n", "16104017 2416", "Gery", "Fatimah", "083-683-415-8323", "gery@gery.com");
+                break;
                 case 2:
-                    
+                
                 case 3:
                     System.out.print("Masukkan Email yang dicari: ");
                     String cariEmail = sc.nextLine();
