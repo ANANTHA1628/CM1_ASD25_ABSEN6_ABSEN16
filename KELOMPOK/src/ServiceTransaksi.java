@@ -1,67 +1,66 @@
 public class ServiceTransaksi {
-    Transaksi[] trs;
-    int idx;
+    Transaksi[] Trs = new Transaksi[100];
+    int idx = 0;
 
-    public ServiceTransaksi(int kapasitas) {
-        trs = new Transaksi[kapasitas];
-        idx = 0;
-    }
-
-    public void tambah(Transaksi t) {
-        if (idx < trs.length) {
-            trs[idx++] = t;
+    // Menambah transaksi baru
+    void tambah(Transaksi t) {
+        if (idx < Trs.length) {
+            Trs[idx] = t;
+            idx++;
         } else {
             System.out.println("Data sudah penuh!");
         }
     }
 
-    public void displayData() {
+    // Menampilkan data rekening bank yang ada
+    void displayData() {
+        System.out.println("No Rekening\tNama\t\tNama Ibu\tNohp\t\t\t\temail");
         for (int i = 0; i < idx; i++) {
-            trs[i].tampilDataTransaksi();
-            System.out.println();
+            Bank b = Trs[i].bankAcc;
+            System.out.printf("%-12s\t%-8s\t%-10s\t%-20s\t%s\n", b.noRekening, b.nama, b.namaIbu, b.noHp, b.email);
         }
     }
 
-    public void searchByEmail(String email) {
-        boolean found = false;
+    // Mencari transaksi berdasarkan email
+    void Searching(String email) {
         for (int i = 0; i < idx; i++) {
-            if (trs[i].bankAcc.email.equalsIgnoreCase(email)) {
-                trs[i].tampilDataTransaksi();
-                found = true;
+            if (Trs[i].bankAcc.email.equalsIgnoreCase(email)) {
+                System.out.println("Data ditemukan:");
+                System.out.println("Nama: " + Trs[i].bankAcc.nama);
+                System.out.println("No Rekening: " + Trs[i].bankAcc.noRekening);
+                return;
             }
         }
-        if (!found) {
-            System.out.println("Data tidak ditemukan.");
-        }
+        System.out.println("Data tidak ditemukan.");
     }
 
-    public void cariMaxInOutSaldo() {
-        if (idx == 0) return;
-
-        double max = trs[0].inOutSaldo;
-        int posisi = 0;
-
+    // Menampilkan saldo minimum dan maksimum
+    void FindMinMax() {
+        if (idx == 0) {
+            System.out.println("Data kosong!");
+            return;
+        }
+        double min = Trs[0].saldo;
+        double max = Trs[0].saldo;
         for (int i = 1; i < idx; i++) {
-            if (trs[i].inOutSaldo > max) {
-                max = trs[i].inOutSaldo;
-                posisi = i;
-            }
+            if (Trs[i].saldo < min) min = Trs[i].saldo;
+            if (Trs[i].saldo > max) max = Trs[i].saldo;
         }
-
-        System.out.println("Transaksi dengan In/Out Saldo Tertinggi:");
-        trs[posisi].tampilDataTransaksi();
+        System.out.println("Saldo minimum: " + min);
+        System.out.println("Saldo maksimum: " + max);
     }
 
-    public void sortByNoRek() {
+    // Mengurutkan data transaksi berdasarkan nama pemilik rekening
+    void Sorting() {
         for (int i = 0; i < idx - 1; i++) {
             for (int j = 0; j < idx - i - 1; j++) {
-                if (trs[j].bankAcc.noRekening.compareTo(trs[j + 1].bankAcc.noRekening) > 0) {
-                    Transaksi temp = trs[j];
-                    trs[j] = trs[j + 1];
-                    trs[j + 1] = temp;
+                if (Trs[j].bankAcc.nama.compareTo(Trs[j + 1].bankAcc.nama) > 0) {
+                    Transaksi temp = Trs[j];
+                    Trs[j] = Trs[j + 1];
+                    Trs[j + 1] = temp;
                 }
             }
         }
-        System.out.println("Data berhasil diurutkan berdasarkan No Rekening.");
+        System.out.println("Data berhasil diurutkan berdasarkan nama.");
     }
 }
