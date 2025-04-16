@@ -1,61 +1,71 @@
 public class ServiceTransaksi {
-    Transaksi[] Trs = new Transaksi[100];
-    int idx = 0;
+    Transaksi[] Trs;
+    int idx;
+
+    public ServiceTransaksi(int kapasitas) {
+        Trs = new Transaksi[kapasitas];
+        idx = 0;
+    }
 
     void tambah(Transaksi t) {
         if (idx < Trs.length) {
-            Trs[idx] = t;
-            idx++;
+            Trs[idx++] = t;
         } else {
             System.out.println("Data sudah penuh!");
         }
     }
 
     void displayData() {
-        System.out.println("No Rekening\tNama\t\tNama Ibu\tNohp\t\t\t\temail");
+        System.out.printf("%-15s %-15s %-10s %-15s %-18s %-25s %-10s\n", 
+            "Kode", "No Rekening", "Saldo", "Debit/Kredit", "Final Saldo", "Tanggal", "Type");
         for (int i = 0; i < idx; i++) {
-            NoRekening b = Trs[i].bankAcc;
-            System.out.printf("%-12s\t%-8s\t%-10s\t%-20s\t%s\n", b.noRekening, b.nama, b.namaIbu, b.noHp, b.email);
+            Trs[i].tampilDataTransaksi();
         }
     }
 
     void Searching(String email) {
+        boolean ditemukan = false;
         for (int i = 0; i < idx; i++) {
             if (Trs[i].bankAcc.email.equalsIgnoreCase(email)) {
                 System.out.println("Data ditemukan:");
-                System.out.println("Nama: " + Trs[i].bankAcc.nama);
-                System.out.println("No Rekening: " + Trs[i].bankAcc.noRekening);
-                return;
+                Trs[i].bankAcc.tampilDataNorek();
+                Trs[i].tampilDataTransaksi();
+                ditemukan = true;
             }
         }
-        System.out.println("Data tidak ditemukan.");
+        if (!ditemukan) {
+            System.out.println("Data tidak ditemukan.");
+        }
     }
 
-    void FindMinMax() {
+    void FindMaxDebitKredit() {
         if (idx == 0) {
             System.out.println("Data kosong!");
             return;
         }
-        double min = Trs[0].saldo;
-        double max = Trs[0].saldo;
+        double max = Trs[0].inOutSaldo;
+        Transaksi maxTrx = Trs[0];
         for (int i = 1; i < idx; i++) {
-            if (Trs[i].saldo < min) min = Trs[i].saldo;
-            if (Trs[i].saldo > max) max = Trs[i].saldo;
+            if (Trs[i].inOutSaldo > max) {
+                max = Trs[i].inOutSaldo;
+                maxTrx = Trs[i];
+            }
         }
-        System.out.println("Saldo minimum: " + min);
-        System.out.println("Saldo maksimum: " + max);
+        System.out.println("Transaksi dengan Debit/Kredit Tertinggi:");
+        maxTrx.tampilDataTransaksi();
     }
 
-    void Sorting() {
+    void SortFinalSaldoAsc() {
         for (int i = 0; i < idx - 1; i++) {
             for (int j = 0; j < idx - i - 1; j++) {
-                if (Trs[j].bankAcc.nama.compareTo(Trs[j + 1].bankAcc.nama) > 0) {
-                    Transaksi temp = Trs[j];
+                if (Trs[j].finalSaldo > Trs[j + 1].finalSaldo) {
+                    Transaksi tmp = Trs[j];
                     Trs[j] = Trs[j + 1];
-                    Trs[j + 1] = temp;
+                    Trs[j + 1] = tmp;
                 }
             }
         }
-        System.out.println("Data berhasil diurutkan berdasarkan nama.");
+        System.out.println("Data diurutkan berdasarkan Final Saldo (ASC):");
+        displayData();
     }
 }
