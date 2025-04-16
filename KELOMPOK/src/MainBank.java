@@ -1,3 +1,4 @@
+
 import java.util.Scanner;
 
 public class MainBank {
@@ -50,4 +51,3 @@ public class MainBank {
 
         sc.close();
     }
-}
